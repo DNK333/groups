@@ -10,11 +10,13 @@ from .views import (
     profile,
     CurrentUserView,
     TeacherView,
+    StudentView,
     ArticleListView,
     ArticleListCreateView,
     CommentListView,
     CommentListCreateView,
-    ArticleDetailView
+    ArticleDetailView,
+    ProductDetailView,
 )
 
 urlpatterns = [
@@ -27,10 +29,12 @@ urlpatterns = [
     ),
     path("api/articles/<int:pk>/", ArticleDetailView.as_view(), name="article_detail"),
     path("api/comment/create/", CommentListCreateView.as_view(), name="comments_list"),
-    path("api/comments/", CommentListView.as_view(), name="comment_create"),
+    path("api/comments/", CommentListCreateView.as_view(), name="comment_create"),
     path("api/article/create/", ArticleListCreateView.as_view(), name="article_list"),
     path("api/articles/", ArticleListView.as_view(), name="article_create"),
     path("api/teacher/", TeacherView.as_view(), name="teacher"),
+    path("api/student/", StudentView.as_view(), name="student"),
+    path("api/products/<int:pk>/", ProductDetailView.as_view(), name="product_detail"),
     path('me/', CurrentUserView.as_view(), name='current_user'),
     path('home/', home, name='home'),
     path('forget/', forget, name='forget'),
