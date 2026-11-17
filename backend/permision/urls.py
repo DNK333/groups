@@ -1,13 +1,20 @@
 from django.urls import path, reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
-
+from sessions_app.views import home, forget
 from .views import (
     register,
     register_JKArman,
     register_choice,
     response_perm,
     CustomLoginView,
-    profile
+    profile,
+    CurrentUserView,
+    TeacherView,
+    ArticleListView,
+    ArticleListCreateView,
+    CommentListView,
+    CommentListCreateView,
+    ArticleDetailView
 )
 
 urlpatterns = [
@@ -18,6 +25,15 @@ urlpatterns = [
         ), 
         name='change_password'
     ),
+    path("api/articles/<int:pk>/", ArticleDetailView.as_view(), name="article_detail"),
+    path("api/comment/create/", CommentListCreateView.as_view(), name="comments_list"),
+    path("api/comments/", CommentListView.as_view(), name="comment_create"),
+    path("api/article/create/", ArticleListCreateView.as_view(), name="article_list"),
+    path("api/articles/", ArticleListView.as_view(), name="article_create"),
+    path("api/teacher/", TeacherView.as_view(), name="teacher"),
+    path('me/', CurrentUserView.as_view(), name='current_user'),
+    path('home/', home, name='home'),
+    path('forget/', forget, name='forget'),
     path('profile/', profile, name='profile'),
     path('register/', register, name='register'),
     path('login/', CustomLoginView.as_view(), name='login'),

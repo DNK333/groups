@@ -22,6 +22,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'permision',
+    'sessions_app',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,3 +121,10 @@ MAILERS = {
 
 
 AUTH_USER_MODEL = 'permision.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+}
